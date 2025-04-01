@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Slump Chat Awards</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="script.js"></script>
+        <script src="popups.js"></script>
+    </head>
+    <body>
+        <div class="header box">
+            <img src="res/logo.png">
+            <span>2025</span>
+        </div>
+        <div class="subheader box">
+            <label for="nameSelect">Viewpoint:</label>
+            <select id="nameSelect">
+                <option value="">- - Select - -</option>
+            </select>
+            <label for="hideUnranked">Hide unranked awards:</label>
+            <input type="checkbox" id="hideUnranked">
+        </div>
+        </div>
+        <div id="popupOverlay"></div>
+        <div id="StartingPopup">
+            <h2 class="phTitle">The slump chat awards 2025</h2>
+            <div class="popup-content active" id="page-1" style="background-image: url(res/banner1.png);">
+                <div class="SPtext">
+                    <p class="phDescription">Welcome!</p>
+                    <p class="phDescription">In here, all messages of the past year were scanned, analysed and the results categorized in many interesting(?) categories.</p>
+                </div>
+            </div>
+            <div class="popup-content" id="page-2" style="background-image: url(res/banner2.png);">
+                <div class="SPtext">
+                    <p class="phDescription">To see how you did the past year, select your name at the top of the page after this tutorial concludes.</p>
+                </div>
+            </div>
+            <div class="popup-content" id="page-3" style="background-image: url(res/banner3.png);">
+                <div class="SPtext">
+                    <p class="phDescription">The different categories will be styled depending on <span class="underline" title="Diamond: 1st&#013;Platinum: 2nd&#013;Gold: 3rd/4th&#013;Silver: 5th - 7th&#013;Bronze: 8th - 11th">how high you rank</span> compared to others.</p>
+                    <p class="phDescription">(You will also recieve <span class="underline" title="Diamond: +7&#013;Platinum: +5&#013;Gold: +3&#013;Silver: +2&#013;Bronze: +1&#013;&#013;Prism: +2">Award-Points</span> for your ranking, used for a special award!)</p>
+                </div>
+            </div>
+            <div class="popup-content" id="page-4" style="background-image: url(res/banner4.png);">
+                <div class="SPtext">
+                    <p class="phDescription">Click on an award to see everyone's analytics.</p>
+                </div>
+            </div>
+            <div class="popup-content" id="page-5" style="background-image: url(res/banner5.png);">
+                <div class="SPtext">
+                    <p class="phDescription">There are also certain awards for group effort.</p>
+                    <p class="phDescription">(Everyone contributing to a "group effort" receives a Prism-tier award.)</p>
+                </div>
+            </div>
+            <div class="pagination-buttons">
+                <button class="navbutton strikethrough" id="prev">Back</button>
+                <button class="navbutton" id="next">Next</button>
+            </div>
+            <div class="navbar"></div>
+        </div>
+        <div id="InfoPopup" class="popup">
+            <h2 class="phTitle">About: Rankings and Points</h2>
+            <div class="infoPopupContent">
+                <span>Solo-Awards are tiered in 5 rankings:</span>
+                <div class="style_diamond">
+                    <span>Diamond</span>
+                    <span>#1</span>
+                    <span>+7 pts.</span>
+                </div>
+                <div class="style_platinum">
+                    <span>Platinum</span>
+                    <span>#2</span>
+                    <span>+5 pts.</span>
+                </div>
+                <div class="style_gold">
+                    <span>Gold</span>
+                    <span>#3 - #4</span>
+                    <span>+3 pts.</span>
+                </div>
+                <div class="style_silver">
+                    <span>Silver</span>
+                    <span>#5 - #7</span>
+                    <span>+2 pts.</span>
+                </div>
+                <div class="style_bronze">
+                    <span>Bronze</span>
+                    <span>#8 - #12</span>
+                    <span>+1 pts.</span>
+                </div>
+                <span>Everyone contributing to a cooperative award will receive it's credit.</span>
+                <div class="style_prism">
+                    <span>Prism</span>
+                    <span>Contributors</span>
+                    <span>+2 pts.</span>
+                </div>
+                <span>Awards with <img src="res/Fadeout.png"> do not award points.</span>
+            </div>
+            <button id="infoPopupClose">Close</button>
+        </div>
+        <div id="popup" class="popup">
+            <div id="popupHeader">
+                <div class="phIcon"></div>
+                <div class="phTitle"></div>
+                <div class="phDescription"></div>
+                <div class="phFlavor"></div>
+            </div>
+            <div id="popupAnnotation"><div>TEST</div></div>
+            <div id="popupContent"></div>
+            <button id="popupClose">Close</button>
+        </div>
+        <div class="box">
+            <div class="theme">
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/globe.png"></div>
+                    <div class="singletitle">MASTER OF CHAOS</div>
+                    <div class="singledescription">Total Award-Points received</div>
+                    <div class="singlestats" id="main_awardpoints"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer fullwide slim" id="infoheader">
+                    <img src="res/info.png">
+                    <p>About Award-Points and Rankings...</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <span class="themeheading">ACTIVITY</span>
+            <div class="theme">
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Folder.png"></div>
+                    <div class="singletitle">CHATTERBOX</div>
+                    <div class="singledescription">Total messages sent</div>
+                    <div class="singlestats" id="messages"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Microphone.png"></div>
+                    <div class="singletitle">CONTROVERSIAL OPINION</div>
+                    <div class="singledescription">Average message length of the users top 10% longest messages sent</div>
+                    <div class="singlestats" id="peakLength"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/speed.png"></div>
+                    <div class="singletitle">SPEED CHATTER</div>
+                    <div class="singledescription">Message frequency in messages per hour, excluding intervals longer than 6h</div>
+                    <div class="singlestats" id="messageFrequency"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/content.png"></div>
+                    <div class="singletitle">CONTENT-AWARE</div>
+                    <div class="singledescription">Average ratio of message length per message</div>
+                    <div class="singlestats" id="averageLength"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Lightning.png"></div>
+                    <div class="singletitle">HYPERFLUX</div>
+                    <div class="singledescription">Ratio of follow-up messages (3s or less after last message without interceptors)</div>
+                    <div class="singlestats" id="messageBursts"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Calendar.png"></div>
+                    <div class="singletitle">DAILY GRIND</div>
+                    <div class="singledescription">Highest streak of chatting daily</div>
+                    <div class="singlestats" id="streak"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Series.png"></div>
+                    <div class="singletitle">9 to 5</div>
+                    <div class="singledescription">Highest amount of messages sent within a single day</div>
+                    <div class="singlestats" id="dailyMessages"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/VIP.png"></div>
+                    <div class="singletitle">VIP CALL</div>
+                    <div class="singledescription">Amount of individual mentions received</div>
+                    <div class="singlestats" id="mentionsReceived"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer unranked">
+                    <div class="singleicon"><img class="sectionicon" src="res/exit.png"></div>
+                    <div class="singletitle">CERES</div>
+                    <div class="singledescription">Amount of intervals between messages spanning 3 days or longer</div>
+                    <div class="singlestats" id="absences"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <span class="themeheading">ATTACHMENTS</span>
+            <div class="theme">
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Box.png"></div>
+                    <div class="singletitle">MULTICASTER</div>
+                    <div class="singledescription">Amount of attachments sent</div>
+                    <div class="singlestats" id="attachments"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/toolbox.png"></div>
+                    <div class="singletitle">ENGINEER</div>
+                    <div class="singledescription">Amount of non-graphic attachments sent</div>
+                    <div class="singlestats" id="utilAttachments"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Ticket.png"></div>
+                    <div class="singletitle">MR. WEBWIDE</div>
+                    <div class="singledescription">Amount of links sent</div>
+                    <div class="singlestats" id="links"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Birdcage.png"></div>
+                    <div class="singletitle">TRUE SLUMP</div>
+                    <div class="singledescription">Amount of twitter links sent (counts Twitter, X and its "Fixup" counterparts)</div>
+                    <div class="singlestats" id="twitterLinks"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/MEME.png"></div>
+                    <div class="singletitle">POCKET MEME</div>
+                    <div class="singledescription">Amount of GIFs sent (tenor only)</div>
+                    <div class="singlestats" id="tenorGifs"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/sticker.png"></div>
+                    <div class="singletitle">OVERLY FANCY</div>
+                    <div class="singledescription">Amount of stickers sent</div>
+                    <div class="singlestats" id="stickers"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <span class="themeheading">CONTENT</span>
+            <div class="theme">
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Book.png"></div>
+                    <div class="singletitle">THESAURUS</div>
+                    <div class="singledescription">Total unique words used (consisting of standard characters only)</div>
+                    <div class="singlestats" id="uniqueWords"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/capital.png"></div>
+                    <div class="singletitle">SOCIALLY INAPT</div>
+                    <div class="singledescription">Ratio of words being fully uppercase sent</div>
+                    <div class="singlestats" id="upperWords"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/break.png"></div>
+                    <div class="singletitle">DRAINED</div>
+                    <div class="singledescription">Ratio of fully lowercase messages (without special characters) sent</div>
+                    <div class="singlestats" id="fullyLowerMessages"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/fancy.png"></div>
+                    <div class="singletitle">QUIRKY</div>
+                    <div class="singledescription">Ratio of messages containing Emojis</div>
+                    <div class="singlestats" id="emojiAppearances"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Strike.png"></div>
+                    <div class="singletitle">LIGHTNING STRIKES</div>
+                    <div class="singledescription">Amount of messages containing "kys" or similar phrases, not counting immediate repeats.</div>
+                    <div class="singlestats" id="kysAppearances"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Exclamation.png"></div>
+                    <div class="singletitle">AGGRESSOR</div>
+                    <div class="singledescription">Ratio of messages containing (the most common) swear words</div>
+                    <div class="singlestats" id="swearAppearances"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">THEATRICAL</div>
+                    <div class="singledescription">Ratio of messages containing keywords like "lol", "lmao", etc.</div>
+                    <div class="singlestats" id="comedy"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/tnshi.png"></div>
+                    <div class="singletitle">SYNTHESIS</div>
+                    <div class="singledescription">Ratio of messages containing non-standard characters</div>
+                    <div class="singlestats" id="nonASCII"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer fullwide unranked">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">REDACTED</div>
+                    <div class="singledescription">Ratio of messages containing spoiler tags</div>
+                    <div class="singlestats" id="spoilers"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <span class="themeheading">BEHAVIOR</span>
+            <div class="theme">
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Reverse.png"></div>
+                    <div class="singletitle">NO U</div>
+                    <div class="singledescription">Amount of reply-interactions</div>
+                    <div class="singlestats" id="replies"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/PSA.png"></div>
+                    <div class="singletitle">PSA SPEAKER</div>
+                    <div class="singledescription">@everyone or @here mentions used (excluding intervals of &le;60s)</div>
+                    <div class="singlestats" id="massMentionCastCount"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/Edited.png"></div>
+                    <div class="singletitle">D-RANK ACCURACY</div>
+                    <div class="singledescription">Total messages edited</div>
+                    <div class="singlestats" id="edits"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/OneWord.png"></div>
+                    <div class="singletitle">CONDENSE</div>
+                    <div class="singledescription">Ratio of non follow-up messages consisting of a single word</div>
+                    <div class="singlestats" id="oneWord"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">CATALYST</div>
+                    <div class="singledescription">Occurences where a message sent after 6h of inactivity led to a conversation</div>
+                    <div class="singlestats" id="initiatingMessages"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">TERMINATOR</div>
+                    <div class="singledescription">Occurences where a message led to a period of inactivity of 6h or longer</div>
+                    <div class="singlestats" id="endingMessages"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">PARROTEERING</div>
+                    <div class="singledescription">Amount of repeat messages following another user</div>
+                    <div class="singlestats" id="repeats"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+                <div class="singlecontainer unranked">
+                    <div class="singleicon"><img class="sectionicon" src="res/Talisman.png"></div>
+                    <div class="singletitle">TALISMANIA</div>
+                    <div class="singledescription">Total interactions with Shenzhia</div>
+                    <div class="singlestats" id="shenInt"><span>---</span><span id="rank">(#-)</span></div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="box">
+            <span class="themeheading">TEAMPLAY</span>
+            <div class="theme">
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">STALE STREAM</div>
+                    <div class="singledescription">Most identical messages in a row (excluding the same author back-to-back)</div>
+                    <div class="singlestats" id="team_chain"><span>---</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">FULL HOUSE</div>
+                    <div class="singledescription">Highest amount of messages from everyone in a single day</div>
+                    <div class="singlestats" id="team_messages"><span>---</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">MAILBOX PIPEBOMB</div>
+                    <div class="singledescription">Highest amount of pings - general and individual - in a single day</div>
+                    <div class="singlestats" id="team_pings"><span>---</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/microphoneDrop.png"></div>
+                    <div class="singletitle">TOO CONTROVERSIAL</div>
+                    <div class="singledescription">Highest average message length of all messages within a single day</div>
+                    <div class="singlestats" id="team_length"><span>---</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/placeholder.png"></div>
+                    <div class="singletitle">INTIMACY</div>
+                    <div class="singledescription">Longest message back-and-forth between 2 users (multiple messages from the same author ignored)</div>
+                    <div class="singlestats" id="team_dual"><span>---</span></div>
+                </div>
+                <div class="singlecontainer">
+                    <div class="singleicon"><img class="sectionicon" src="res/speed_inverse.png"></div>
+                    <div class="singletitle">SERENITY</div>
+                    <div class="singledescription">Lowest average message frequency in a day</div>
+                    <div class="singlestats" id="team_pauses"><span>---</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Made by <a href="https://github.com/SweetPinkMilkTea" target="_blank">SweetPinkMilkTea</a>.</span>
+            <button id="ResetSP">Show starting popup again after refresh</button>
+        </div>
+    </body>
+</html>
