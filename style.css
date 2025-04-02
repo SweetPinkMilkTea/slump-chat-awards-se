@@ -93,7 +93,7 @@ select {
     grid-template-rows: auto auto auto;
     overflow: hidden;
     transform: perspective(300px) rotateY(0deg) rotateX(0deg);
-    transition: background-color 0.15s ease, transform 0.1 s ease;
+    transition: background-color 0.15s ease, transform 0.1s ease;
 }
 @media (max-width: 877px) {
     .singlecontainer {
