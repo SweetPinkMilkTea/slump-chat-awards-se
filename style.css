@@ -548,7 +548,6 @@ select {
     border: 1px solid #ffffff55;
     padding: 20px;
     border-radius: 8px;
-    min-height: 25vh;
     }
     .popup-content.active {
         display: flex;

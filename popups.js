@@ -1,5 +1,5 @@
 let currentPage = 1
-const totalStartPopupPages = 5
+const totalStartPopupPages = 4
 
 document.addEventListener('DOMContentLoaded', async () => {
     
